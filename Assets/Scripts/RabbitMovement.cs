@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class RabbitMovement : MonoBehaviour
 {
     public Transform lanternParent;
@@ -11,6 +13,7 @@ public class RabbitMovement : MonoBehaviour
     private Transform[] lanterns;
     private int currentLantern;
     private bool isWaiting;
+    private NavMeshAgent navAgent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +22,7 @@ public class RabbitMovement : MonoBehaviour
         {
             lanterns[i] = lanternParent.GetChild(i);
         }
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -33,10 +37,15 @@ public class RabbitMovement : MonoBehaviour
 
     void MoveToLantern()
     {
-        Transform target = lanterns[currentLantern];
-        transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-
-        if(Vector3.Distance(transform.position,target.position) < 1f)
+        Vector3 target = new Vector3(lanterns[currentLantern].position.x, transform.position.y, lanterns[currentLantern].position.z);
+        navAgent.SetDestination(target);
+        
+        //(This code here is for basic movement without AI navigation
+        //transform.position = Vector3.MoveTowards(transform.position, 
+        //    target // move on x and z axis only
+        //    , moveSpeed * Time.deltaTime);
+        
+        if (Vector3.Distance(transform.position,target) < .1f)
         {
             StartCoroutine(WaitAtLantern());
         }
