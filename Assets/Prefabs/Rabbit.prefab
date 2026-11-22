@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 382403476753049945}
   m_Layer: 0
   m_Name: Rabbit
-  m_TagString: Untagged
+  m_TagString: Rabbit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,10 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4affc8950f446479d2da58de55656e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  lanternParent: {fileID: 0}
   moveSpeed: 2
   waitTime: 2
-  loopLanterns: 1
 --- !u!195 &382403476753049945
 NavMeshAgent:
   m_ObjectHideFlags: 0
