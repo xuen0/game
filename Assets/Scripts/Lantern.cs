@@ -4,6 +4,7 @@ using UnityEngine;
 public class Lantern : MonoBehaviour
 {
     public bool isLightOn = false;
+    public bool shouldRabbitMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,7 +26,7 @@ public class Lantern : MonoBehaviour
         {
             material.EnableKeyword("_EMISSION");
             isLightOn = true;
-            GameObject.FindWithTag("Rabbit").GetComponent<RabbitMovement>().AddToMoveQueue(gameObject);
+            if(shouldRabbitMove) GameObject.FindWithTag("Rabbit").GetComponent<RabbitMovement>().AddToMoveQueue(gameObject);
         }
         else
         {
